@@ -1,0 +1,33 @@
+<a href="/events">Event Dashboard</a>
+<form action='/users' method='post'>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Log Out'>
+</form>
+
+<h1><%= @event.name %></h1>
+
+<p>Host: <%= @event.user.first_name %></p>
+<p>Date: <%= @event.date %></p>
+<p>Location: <%= @event.location %></p>
+
+<p>
+  Peope who are joining the event: <%= @event.attendances.count %>
+</p>
+
+<h3>Discussion about this event:</h3>
+<div id="comments">
+  <% @comments.each do |comment| %>
+  <p><%= comment.user.first_name %> says: <%= comment.content%></p>
+  <hr>
+  <% end %>
+</div>
+
+<br>
+<form action="/comment" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="hidden" name="user_id" value="<%= session[:user_id]%>">
+  <input type="hidden" name="event_id" value="<%= @event.id %>">
+  Add Comment: <input type="text" name="content">
+  <input type="submit" name="comment" value="Submit Comments">
+</form>

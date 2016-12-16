@@ -1,0 +1,25 @@
+<a href="/events">Events Dashboard</a>
+<br>
+<form action='/users' method='post'>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Log Out'>
+</form>
+<br>
+<br>
+<h1>Edit Event</h1>
+
+<form action="/events/<%= @event.id %>" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="user_id" value="<%= session[:user_id]%>">
+  <br>Name <br><input class='name' type='text' name='name' value="<%= @event["name"] %>"/>
+  <br>Date <br><input class='name' type='text' name='date' value="<%= @event["date"] %>"/>
+  <br>Location <br><input class='name' type='text' name='location' value="<%= @event["location"] %>"/>
+  <select name="state">
+    <% @states.each do |state| %>
+    <option value="<%= state %>"><%= state %></option>
+    <% end %>
+  </select>
+  <br><input class='button' type='submit' value='Update Event'/>
+</form>

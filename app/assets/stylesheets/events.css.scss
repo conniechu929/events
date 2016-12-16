@@ -1,0 +1,11 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#comments{
+	overflow: auto;
+	width: 550px;
+	height: 300px;
+	display: block;
+	border: 2px solid black;
+	margin-top: 30px;
+}
